@@ -22,7 +22,7 @@ class Plot:
     def scatter_plot(self, mdata, X, Y):
         plt.figure(figsize=(8,5))
         sns.scatterplot(data=mdata, x=X, y=Y, alpha=0.6)
-        plt.title("{X} Change vs {Y} Change")
+        plt.title(f"{X} Change vs {Y} Change")
         plt.show()
     def heat_plot(self, d_corr):
        
@@ -38,4 +38,23 @@ class Plot:
             sns.boxplot(y=data[col])
             plt.title(col)
         plt.tight_layout()
+        plt.show()
+    def time_serice_plot(self, M_data, ClaimFrequency,ClaimSeverity, month):
+        fig, ax1 = plt.subplots(figsize=(12, 6))
+
+        color = 'tab:blue'
+        ax1.set_xlabel('Date')
+        ax1.set_ylabel(f'{ClaimFrequency}', color=color)
+        ax1.plot(M_data[month].astype(str), M_data[ClaimFrequency], color=color, marker='o')
+        ax1.tick_params(axis='y', labelcolor=color)
+        ax1.set_xticklabels(M_data[month].astype(str), rotation=45)
+
+        ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
+        color = 'tab:red'
+        ax2.set_ylabel(f'{ClaimSeverity} (Avg. Claim Amt)', color=color)
+        ax2.plot(M_data[month].astype(str), M_data[ClaimSeverity], color=color, marker='x')
+        ax2.tick_params(axis='y', labelcolor=color)
+
+        plt.title(f'Temporal Trend: {ClaimFrequency} vs. {ClaimSeverity}')
+        fig.tight_layout() 
         plt.show()
