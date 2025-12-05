@@ -31,12 +31,11 @@ env/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-
+!.gitignore
 # Data files
-data/
-*.csv
-*.json
-*.xlsx
+data/*
+!data/*.dvc
+
 
 # IDE
 .vscode/
