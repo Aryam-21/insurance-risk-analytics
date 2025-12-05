@@ -44,5 +44,6 @@ data/*
 *.swo
 
 # OS
+dvc_storage/
 .DS_Store
 Thumbs.db
