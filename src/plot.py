@@ -58,3 +58,40 @@ class Plot:
         plt.title(f'Temporal Trend: {ClaimFrequency} vs. {ClaimSeverity}')
         fig.tight_layout() 
         plt.show()
+    def plot_metrics(self,models, mae_scores, mse_scores, r2_scores):
+        """
+        Visualizes model performance using bar charts.
+        Helps compare:
+        - MAE accuracy
+        - MSE error
+        - R² fit score
+        """
+
+        import matplotlib.pyplot as plt
+
+        # ---------- Plot MAE ----------
+        plt.figure(figsize=(6, 4))
+        plt.bar(models, mae_scores, color='skyblue')
+        plt.xlabel('Models')
+        plt.ylabel('Mean Absolute Error (MAE)')
+        plt.title('Comparison of MAE Scores')
+        plt.xticks(rotation=45)
+        plt.show()
+
+        # ---------- Plot MSE ----------
+        plt.figure(figsize=(6, 4))
+        plt.bar(models, mse_scores, color='lightgreen')
+        plt.xlabel('Models')
+        plt.ylabel('Mean Squared Error (MSE)')
+        plt.title('Comparison of MSE Scores')
+        plt.xticks(rotation=45)
+        plt.show()
+
+        # ---------- Plot R² ----------
+        plt.figure(figsize=(6, 4))
+        plt.bar(models, r2_scores, color='salmon')
+        plt.xlabel('Models')
+        plt.ylabel('R-squared Score')
+        plt.title('Comparison of R-squared Scores')
+        plt.xticks(rotation=45)
+        plt.show()
