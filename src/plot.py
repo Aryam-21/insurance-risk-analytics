@@ -1,6 +1,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
 import numpy as np
 class Plot:
     def __init__(self):
@@ -93,5 +94,21 @@ class Plot:
         plt.xlabel('Models')
         plt.ylabel('R-squared Score')
         plt.title('Comparison of R-squared Scores')
+        plt.xticks(rotation=45)
+        plt.show()
+    def tree_plot(self,model, feature):
+        plt.figure(figsize=(20, 10))
+        plot_tree(decision_tree=model, feature_names=feature, filled=True, rounded=True)
+        plt.show()
+    def plot_feature_importance(self,model, feature_names, model_name):
+        n = len(feature_names)
+        feature_importance = pd.DataFrame(model.feature_importances_[:n], index=feature_names, columns=["Importance"])
+        feature_importance = feature_importance.sort_values(by="Importance", ascending=False)
+
+        plt.figure(figsize=(10, 6))
+        feature_importance.plot(kind='bar', legend=False, color='skyblue')
+        plt.title(f'Feature Importance for {model_name}')
+        plt.xlabel('Features')
+        plt.ylabel('Importance')
         plt.xticks(rotation=45)
         plt.show()
